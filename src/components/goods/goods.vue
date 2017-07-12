@@ -40,8 +40,10 @@
     </div>
   </div>
 </template>
-<script type="text/ecmascript-6"> 
+
+<script type="text/ecmascript-6">
 const ERR_OK = 0;
+
 export default {
   props: {
     seller: {
@@ -64,7 +66,9 @@ export default {
   }
 };
 </script>
+
 <style lang="stylus" rel="stylesheet/stylus">
+
   @import "../../common/stylus/mixin.styl"
 
   .goods
@@ -171,3 +175,4 @@ export default {
             right: 0
             bottom: 12px
 </style>
+
