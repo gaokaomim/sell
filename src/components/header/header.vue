@@ -49,9 +49,17 @@
                             <span class="text">{{seller.supports[$index].description}}</span>
                         </li>
                     </ul>
+                    <div class="title">
+                        <div class="line"></div>
+                        <div class="text">商家公告</div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="bulletin">
+                        <p class="content">{{seller.bulletin}}</p>
+                    </div>
                 </div>
             </div>
-            <div class="detail-close">
+            <div class="detail-close" @click="hideDetail">
                 <i class="icon-close"></i>
             </div>
         </div>
@@ -145,10 +153,9 @@ export default {
               bg-image('invoice_1')
             &.special
               bg-image('special_1')
-          .text
-            line-height: 12px
-            font-size: 10px
-
+          .text      
+            line-height 12px
+            font-size 10px
       .support-count
         position: absolute
         right: 12px
@@ -166,7 +173,7 @@ export default {
           margin-left: 2px
           line-height: 24px
           font-size: 10px
-
+          
     .bulletin-wrapper
       position: relative
       height: 28px
@@ -211,7 +218,15 @@ export default {
       width 100%
       height 100%
       overflow auto
+      transition all 0.5s
+      -webkit-backdrop-filter blur(10px)
       background rgba(7,17,27,0.8)
+      &.fade-transition
+        opacity: 1
+        background: rgba(7, 17, 27, 0.8)
+      &.fade-enter, &.fade-leave
+        opacity: 0
+        background: rgba(7, 17, 27, 0)
       .detail-wrapper
         width 100%
         min-height 100%
@@ -258,18 +273,25 @@ export default {
                 background-size 16px 16px 
                 background-repeat no-repeat
                 &.decrease
-                bg-image('decrease_2')
+                 bg-image('decrease_2')
                 &.discount
-                bg-image('discount_2')
+                 bg-image('discount_2')
                 &.guarantee
-                bg-image('guarantee_2')
+                 bg-image('guarantee_2')
                 &.invoice
-                bg-image('invoice_2')
+                 bg-image('invoice_2')
                 &.special
-                bg-image('special_2')
+                 bg-image('special_2')
               .text
-                line-height 12px
-                font-size 12px  
+                line-height 16px
+                font-size 12px 
+          .bulletin
+            width: 80%
+            margin: 0 auto
+            .content
+              padding: 0 12px
+              line-height: 24px
+              font-size: 12px 
       .detail-close
         position relative
         width 32px
