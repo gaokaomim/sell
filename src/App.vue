@@ -26,7 +26,9 @@
 
 <script type="text/ecmascript-6">
 import header from './components/header/header.vue';
-const ERR_OK = 0;
+
+import data from 'common/json/data.json';
+// const ERR_OK = 0;
 export default {
   data() {
     return {
@@ -34,14 +36,15 @@ export default {
     };
   },
   created() {
-    this.$http.get('/api/seller').then((response) => {
-      response = response.body;
-      console.log(response);
-      if (response.errno === ERR_OK) {
-        this.seller = response.data;
-        console.log(this.seller);
-      }
-    });
+    //      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+    //        response = response.body;
+    //        if (response.errno === ERR_OK) {
+    //          this.seller = response.data;
+    //          this.seller = Object.assign({}, this.seller, response.data);
+    //        }
+    //      });
+
+    this.seller = data.seller;
   },
   components: {
     'v-header': header
