@@ -1,26 +1,27 @@
 <template>
     <div class="ratingselect">
         <div class="rating-type border-1px">
-            <span @click="select(2,$event)" class="block positive" :class="{'active':selectType===2}">{{desc.all}}
+            <span class="block positive" @click="select(2, $event)" :class="{'active': selectType === 2}">{{desc.all}}
                 <span class="count">{{ratings.length}}</span>
             </span>
-            <span @click="select(0,$event)" class="block positive" :class="{'active':selectType===0}">{{desc.positive}}
+            <span class="block positive" @click="select(0, $event)" :class="{'active': selectType === 0}">{{desc.positive}}
                 <span class="count">{{positives.length}}</span>
             </span>
-            <span @click="select(1,$event)" class="block negative" :class="{'active':selectType===1}">{{desc.negative}}
-                <span class="count">{{negatives.length}}</span>
+            <span class="block negative" @click="select(1, $event)" :class="{'active': selectType === 1}">{{desc.negative}}
+                <span class="count">{{nagatives.length}}</span>
             </span>
         </div>
-        <div @click="toggleContent" class="switch" :class="{'on':onlyContent}">
+        <div class="switch" @click="toggleContent($event)" :class="{'on':onlyContent}">
             <span class="icon-check_circle"></span>
             <span class="text">只看有内容的评价</span>
         </div>
     </div>
 </template>
+
 <script type="text/ecmascript-6">
 const POSITIVE = 0;
 const NEGATIVE = 1;
-const ALL = 2;
+const ALL = 0;
 export default {
     props: {
         ratings: {
@@ -43,7 +44,7 @@ export default {
                 return {
                     all: '全部',
                     positive: '满意',
-                    negative: '不满意'
+                    negative: '吐槽'
                 };
             }
         }
@@ -54,7 +55,7 @@ export default {
                 return rating.rateType === POSITIVE;
             });
         },
-        negatives() {
+        nagatives() {
             return this.ratings.filter((rating) => {
                 return rating.rateType === NEGATIVE;
             });
@@ -66,7 +67,7 @@ export default {
                 return;
             }
             this.selectType = type;
-            this.$emit('increment', 'selectType', type);
+            this.$emit('increment', 'selectType', type); // 子组件通过 $emit触发父组件的方法 increment   还可以传参   this.$emit('increment' ,this.counter);
         },
         toggleContent(event) {
             if (!event._constructed) {
@@ -88,8 +89,10 @@ export default {
     }
 };
 </script>
+
 <style lang="stylus" rel="stylesheet/stylus">
- @import "../../common/stylus/mixin.styl"
+  @import "../../common/stylus/mixin.styl"
+
   .ratingselect
     .rating-type
       padding: 18px 0
